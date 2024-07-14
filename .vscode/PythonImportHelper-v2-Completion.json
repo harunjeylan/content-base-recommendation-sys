@@ -1,69 +1,5 @@
 [
     {
-        "label": "MilvusClient",
-        "importPath": "pymilvus",
-        "description": "pymilvus",
-        "isExtraImport": true,
-        "detail": "pymilvus",
-        "documentation": {}
-    },
-    {
-        "label": "MilvusClient",
-        "importPath": "pymilvus",
-        "description": "pymilvus",
-        "isExtraImport": true,
-        "detail": "pymilvus",
-        "documentation": {}
-    },
-    {
-        "label": "MilvusClient",
-        "importPath": "pymilvus",
-        "description": "pymilvus",
-        "isExtraImport": true,
-        "detail": "pymilvus",
-        "documentation": {}
-    },
-    {
-        "label": "MilvusClient",
-        "importPath": "pymilvus",
-        "description": "pymilvus",
-        "isExtraImport": true,
-        "detail": "pymilvus",
-        "documentation": {}
-    },
-    {
-        "label": "SentenceTransformer",
-        "importPath": "sentence_transformers",
-        "description": "sentence_transformers",
-        "isExtraImport": true,
-        "detail": "sentence_transformers",
-        "documentation": {}
-    },
-    {
-        "label": "SentenceTransformer",
-        "importPath": "sentence_transformers",
-        "description": "sentence_transformers",
-        "isExtraImport": true,
-        "detail": "sentence_transformers",
-        "documentation": {}
-    },
-    {
-        "label": "SentenceTransformer",
-        "importPath": "sentence_transformers",
-        "description": "sentence_transformers",
-        "isExtraImport": true,
-        "detail": "sentence_transformers",
-        "documentation": {}
-    },
-    {
-        "label": "SentenceTransformer",
-        "importPath": "sentence_transformers",
-        "description": "sentence_transformers",
-        "isExtraImport": true,
-        "detail": "sentence_transformers",
-        "documentation": {}
-    },
-    {
         "label": "pandas",
         "kind": 6,
         "isExtraImport": true,
@@ -82,11 +18,19 @@
         "documentation": {}
     },
     {
-        "label": "cosine_similarity",
-        "importPath": "sklearn.metrics.pairwise",
-        "description": "sklearn.metrics.pairwise",
+        "label": "MilvusClient",
+        "importPath": "pymilvus",
+        "description": "pymilvus",
         "isExtraImport": true,
-        "detail": "sklearn.metrics.pairwise",
+        "detail": "pymilvus",
+        "documentation": {}
+    },
+    {
+        "label": "SentenceTransformer",
+        "importPath": "sentence_transformers",
+        "description": "sentence_transformers",
+        "isExtraImport": true,
+        "detail": "sentence_transformers",
         "documentation": {}
     },
     {
@@ -99,354 +43,57 @@
         "documentation": {}
     },
     {
-        "label": "client",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "client = MilvusClient(\"milvus_demo.db\")\nmodel = SentenceTransformer('intfloat/e5-base-v2')\nif not client.has_collection(collection_name=\"demo_collection\"):\n    client.create_collection(\n        collection_name=\"demo_collection\",\n        dimension=768,      )\n    docs = [\n        \"Artificial intelligence was founded as an academic discipline in 1956.\",\n        \"Alan Turing was the first person to conduct substantial research in AI.\",\n        \"Born in Maida Vale, London, Turing was raised in southern England.\",",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "model",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "model = SentenceTransformer('intfloat/e5-base-v2')\nif not client.has_collection(collection_name=\"demo_collection\"):\n    client.create_collection(\n        collection_name=\"demo_collection\",\n        dimension=768,      )\n    docs = [\n        \"Artificial intelligence was founded as an academic discipline in 1956.\",\n        \"Alan Turing was the first person to conduct substantial research in AI.\",\n        \"Born in Maida Vale, London, Turing was raised in southern England.\",\n    ]",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "query_vectors",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "query_vectors = model.encode([\"when Artificial intelligence founded?\"])\nres = client.search(\n    collection_name=\"demo_collection\",  # target collection\n    data=query_vectors,  # query vectors\n    limit=2,  # number of returned entities\n    output_fields=[\"text\", \"subject\"],  # specifies fields to be returned\n)\nprint(res)",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "res",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "res = client.search(\n    collection_name=\"demo_collection\",  # target collection\n    data=query_vectors,  # query vectors\n    limit=2,  # number of returned entities\n    output_fields=[\"text\", \"subject\"],  # specifies fields to be returned\n)\nprint(res)",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
         "label": "get_recommendations",
         "kind": 2,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "def get_recommendations(user_id, top_n=10):\n    # Content-based filtering\n    user_watched_videos = user_interactions[user_interactions['user_id'] == user_id]['video_id'].tolist()\n    video_content = videos.loc[videos['video_id'].isin(user_watched_videos)]['title'] + ' : ' + videos.loc[videos['video_id'].isin(user_watched_videos)]['description']\n    user_watched_embeddings = embed_model.encode(video_content.to_list())\n    search_results = client.search(\n        collection_name=collection_name,\n        data=user_watched_embeddings,\n        limit=top_n,\n        output_fields=[\"id\"],",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "videos",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "videos = pd.read_csv('videos.csv')\nuser_interactions = pd.read_csv('user_interactions.csv')\nembed_model = SentenceTransformer('intfloat/e5-base-v2')\nvideo_embeddings = embed_model.encode(videos['title'] + ' ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "user_interactions",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "user_interactions = pd.read_csv('user_interactions.csv')\nembed_model = SentenceTransformer('intfloat/e5-base-v2')\nvideo_embeddings = embed_model.encode(videos['title'] + ' ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "embed_model",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "embed_model = SentenceTransformer('intfloat/e5-base-v2')\nvideo_embeddings = embed_model.encode(videos['title'] + ' ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "video_embeddings",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "video_embeddings = embed_model.encode(videos['title'] + ' ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "client",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "client = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )\ndata = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"text\": video['title'] + ' ' + video['description'], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\nres = client.upsert(collection_name=collection_name, data=data)",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "collection_name",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "collection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )\ndata = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"text\": video['title'] + ' ' + video['description'], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\nres = client.upsert(collection_name=collection_name, data=data)\nprint(f\"Inserted {len(res)} entities into the collection.\")",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "data",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "data = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"text\": video['title'] + ' ' + video['description'], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\nres = client.upsert(collection_name=collection_name, data=data)\nprint(f\"Inserted {len(res)} entities into the collection.\")\ndef get_recommendations(user_id, top_n=10):\n    # Content-based filtering\n    user_watched_videos = user_interactions[user_interactions['user_id'] == user_id]['video_id'].tolist()\n    video_content = videos.loc[videos['video_id'].isin(user_watched_videos)]['title'] + ' : ' + videos.loc[videos['video_id'].isin(user_watched_videos)]['description']\n    user_watched_embeddings = embed_model.encode(video_content.to_list())\n    search_results = client.search(\n        collection_name=collection_name,",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "res",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "res = client.upsert(collection_name=collection_name, data=data)\nprint(f\"Inserted {len(res)} entities into the collection.\")\ndef get_recommendations(user_id, top_n=10):\n    # Content-based filtering\n    user_watched_videos = user_interactions[user_interactions['user_id'] == user_id]['video_id'].tolist()\n    video_content = videos.loc[videos['video_id'].isin(user_watched_videos)]['title'] + ' : ' + videos.loc[videos['video_id'].isin(user_watched_videos)]['description']\n    user_watched_embeddings = embed_model.encode(video_content.to_list())\n    search_results = client.search(\n        collection_name=collection_name,\n        data=user_watched_embeddings,",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "user_id",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "user_id = 10\nrecommendations = get_recommendations(user_id, top_n=10)\nprint(recommendations)",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "recommendations",
-        "kind": 5,
-        "importPath": "main1",
-        "description": "main1",
-        "peekOfCode": "recommendations = get_recommendations(user_id, top_n=10)\nprint(recommendations)",
-        "detail": "main1",
-        "documentation": {}
-    },
-    {
-        "label": "get_top_recommendations",
-        "kind": 2,
-        "importPath": "main2",
-        "description": "main2",
-        "peekOfCode": "def get_top_recommendations(user_id, user_video_matrix, item_similarity_matrix, N=10):\n    # Check if the user has any interactions\n    if user_id not in user_video_matrix.index:\n        return []\n    # Get the user's interacted videos\n    user_interactions = user_video_matrix.loc[user_id]\n    # Calculate a weighted average of similarities for each video\n    video_similarities = item_similarity_matrix.mul(user_interactions, axis=1)\n    video_similarities = video_similarities.sum(axis=0) / user_interactions.sum()\n    # Sort the videos by similarity and get the top N recommendations",
-        "detail": "main2",
-        "documentation": {}
-    },
-    {
-        "label": "interactions",
-        "kind": 5,
-        "importPath": "main2",
-        "description": "main2",
-        "peekOfCode": "interactions = pd.read_csv('user_interactions.csv')\n# Create a user-video interaction matrix\nuser_video_matrix = interactions.pivot_table(index='user_id', columns='video_id', values='interaction_type', fill_value=0)\n# Calculate item-item similarity matrix using cosine similarity\nitem_similarity_matrix = 1 - user_video_matrix.T.corr(method='pearson')\nitem_similarity_matrix = pd.DataFrame(cosine_similarity(user_video_matrix.T), index=user_video_matrix.columns, columns=user_video_matrix.columns)\n# Define a function to get the top N recommendations for a given user\ndef get_top_recommendations(user_id, user_video_matrix, item_similarity_matrix, N=10):\n    # Check if the user has any interactions\n    if user_id not in user_video_matrix.index:",
-        "detail": "main2",
-        "documentation": {}
-    },
-    {
-        "label": "user_video_matrix",
-        "kind": 5,
-        "importPath": "main2",
-        "description": "main2",
-        "peekOfCode": "user_video_matrix = interactions.pivot_table(index='user_id', columns='video_id', values='interaction_type', fill_value=0)\n# Calculate item-item similarity matrix using cosine similarity\nitem_similarity_matrix = 1 - user_video_matrix.T.corr(method='pearson')\nitem_similarity_matrix = pd.DataFrame(cosine_similarity(user_video_matrix.T), index=user_video_matrix.columns, columns=user_video_matrix.columns)\n# Define a function to get the top N recommendations for a given user\ndef get_top_recommendations(user_id, user_video_matrix, item_similarity_matrix, N=10):\n    # Check if the user has any interactions\n    if user_id not in user_video_matrix.index:\n        return []\n    # Get the user's interacted videos",
-        "detail": "main2",
-        "documentation": {}
-    },
-    {
-        "label": "item_similarity_matrix",
-        "kind": 5,
-        "importPath": "main2",
-        "description": "main2",
-        "peekOfCode": "item_similarity_matrix = 1 - user_video_matrix.T.corr(method='pearson')\nitem_similarity_matrix = pd.DataFrame(cosine_similarity(user_video_matrix.T), index=user_video_matrix.columns, columns=user_video_matrix.columns)\n# Define a function to get the top N recommendations for a given user\ndef get_top_recommendations(user_id, user_video_matrix, item_similarity_matrix, N=10):\n    # Check if the user has any interactions\n    if user_id not in user_video_matrix.index:\n        return []\n    # Get the user's interacted videos\n    user_interactions = user_video_matrix.loc[user_id]\n    # Calculate a weighted average of similarities for each video",
-        "detail": "main2",
-        "documentation": {}
-    },
-    {
-        "label": "item_similarity_matrix",
-        "kind": 5,
-        "importPath": "main2",
-        "description": "main2",
-        "peekOfCode": "item_similarity_matrix = pd.DataFrame(cosine_similarity(user_video_matrix.T), index=user_video_matrix.columns, columns=user_video_matrix.columns)\n# Define a function to get the top N recommendations for a given user\ndef get_top_recommendations(user_id, user_video_matrix, item_similarity_matrix, N=10):\n    # Check if the user has any interactions\n    if user_id not in user_video_matrix.index:\n        return []\n    # Get the user's interacted videos\n    user_interactions = user_video_matrix.loc[user_id]\n    # Calculate a weighted average of similarities for each video\n    video_similarities = item_similarity_matrix.mul(user_interactions, axis=1)",
-        "detail": "main2",
-        "documentation": {}
-    },
-    {
-        "label": "user_id",
-        "kind": 5,
-        "importPath": "main2",
-        "description": "main2",
-        "peekOfCode": "user_id = 10\ntop_recommendations = get_top_recommendations(user_id, user_video_matrix, item_similarity_matrix)\nprint(f\"Top recommendations for user {user_id}: {top_recommendations}\")",
-        "detail": "main2",
-        "documentation": {}
-    },
-    {
-        "label": "top_recommendations",
-        "kind": 5,
-        "importPath": "main2",
-        "description": "main2",
-        "peekOfCode": "top_recommendations = get_top_recommendations(user_id, user_video_matrix, item_similarity_matrix)\nprint(f\"Top recommendations for user {user_id}: {top_recommendations}\")",
-        "detail": "main2",
-        "documentation": {}
-    },
-    {
-        "label": "get_recommendations",
-        "kind": 2,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "def get_recommendations(user_id, top_n=10):\n    # Content-based filtering\n    user_interactions_sorted = user_interactions[user_interactions['user_id'] == user_id].sort_values(by='interaction_type', ascending=False).head(2)\n    user_watched_videos = videos.loc[videos['video_id'].isin(user_interactions_sorted['video_id'].tolist())]\n    user_watched_videos = pd.merge(user_interactions_sorted[['video_id', 'interaction_type']], user_watched_videos, on='video_id', how='left')\n    video_content = user_watched_videos['title'] + ' : ' + user_watched_videos['description']\n    user_watched_embeddings = embed_model.encode(video_content.to_list())\n    search_results = client.search(\n        collection_name=collection_name,\n        data=user_watched_embeddings,",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "videos",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "videos = pd.read_csv('videos.csv')\nuser_interactions = pd.read_csv('user_interactions.csv')\nembed_model = SentenceTransformer('intfloat/e5-base-v2')\nvideo_embeddings = embed_model.encode(videos['title'] + ' : ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "user_interactions",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "user_interactions = pd.read_csv('user_interactions.csv')\nembed_model = SentenceTransformer('intfloat/e5-base-v2')\nvideo_embeddings = embed_model.encode(videos['title'] + ' : ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "embed_model",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "embed_model = SentenceTransformer('intfloat/e5-base-v2')\nvideo_embeddings = embed_model.encode(videos['title'] + ' : ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "video_embeddings",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "video_embeddings = embed_model.encode(videos['title'] + ' : ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "client",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "client = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )\ndata = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\nres = client.upsert(collection_name=collection_name, data=data)",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "collection_name",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "collection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    # client.drop_collection(collection_name=collection_name)\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )\ndata = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\nres = client.upsert(collection_name=collection_name, data=data)\nprint(f\"Inserted {len(res)} entities into the collection.\")",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "data",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "data = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\nres = client.upsert(collection_name=collection_name, data=data)\nprint(f\"Inserted {len(res)} entities into the collection.\")\ndef get_recommendations(user_id, top_n=10):\n    # Content-based filtering\n    user_interactions_sorted = user_interactions[user_interactions['user_id'] == user_id].sort_values(by='interaction_type', ascending=False).head(2)\n    user_watched_videos = videos.loc[videos['video_id'].isin(user_interactions_sorted['video_id'].tolist())]\n    user_watched_videos = pd.merge(user_interactions_sorted[['video_id', 'interaction_type']], user_watched_videos, on='video_id', how='left')\n    video_content = user_watched_videos['title'] + ' : ' + user_watched_videos['description']\n    user_watched_embeddings = embed_model.encode(video_content.to_list())",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "res",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "res = client.upsert(collection_name=collection_name, data=data)\nprint(f\"Inserted {len(res)} entities into the collection.\")\ndef get_recommendations(user_id, top_n=10):\n    # Content-based filtering\n    user_interactions_sorted = user_interactions[user_interactions['user_id'] == user_id].sort_values(by='interaction_type', ascending=False).head(2)\n    user_watched_videos = videos.loc[videos['video_id'].isin(user_interactions_sorted['video_id'].tolist())]\n    user_watched_videos = pd.merge(user_interactions_sorted[['video_id', 'interaction_type']], user_watched_videos, on='video_id', how='left')\n    video_content = user_watched_videos['title'] + ' : ' + user_watched_videos['description']\n    user_watched_embeddings = embed_model.encode(video_content.to_list())\n    search_results = client.search(",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "user_id",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "user_id = 20\nrecommendations = get_recommendations(user_id, top_n=10)\nprint(recommendations)",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "recommendations",
-        "kind": 5,
-        "importPath": "main3",
-        "description": "main3",
-        "peekOfCode": "recommendations = get_recommendations(user_id, top_n=10)\nprint(recommendations)",
-        "detail": "main3",
-        "documentation": {}
-    },
-    {
-        "label": "get_recommendations",
-        "kind": 2,
-        "importPath": "main4",
-        "description": "main4",
+        "importPath": "main",
+        "description": "main",
         "peekOfCode": "def get_recommendations(user_id, top_n=10):\n    try:\n        # Content-based filtering\n        user_interactions_sorted = user_interactions[user_interactions['user_id'] == user_id].sort_values(by='interaction_type', ascending=False).head(2)\n        user_watched_videos = videos.loc[videos['video_id'].isin(user_interactions_sorted['video_id'].tolist())]\n        user_watched_videos = pd.merge(user_interactions_sorted[['video_id', 'interaction_type']], user_watched_videos, on='video_id', how='left')\n        video_content = user_watched_videos['title'] + ' : ' + user_watched_videos['description']\n        user_watched_embeddings = embed_model.encode(video_content.to_list())\n        search_results = client.search(\n            collection_name=collection_name,",
-        "detail": "main4",
+        "detail": "main",
         "documentation": {}
     },
     {
         "label": "embed_model",
         "kind": 5,
-        "importPath": "main4",
-        "description": "main4",
+        "importPath": "main",
+        "description": "main",
         "peekOfCode": "embed_model = SentenceTransformer('intfloat/e5-base-v2')\nvideo_embeddings = embed_model.encode(videos['title'] + ' : ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    logging.info(\"Creating Milvus collection: 'video_embeddings'\")\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,",
-        "detail": "main4",
+        "detail": "main",
         "documentation": {}
     },
     {
         "label": "video_embeddings",
         "kind": 5,
-        "importPath": "main4",
-        "description": "main4",
+        "importPath": "main",
+        "description": "main",
         "peekOfCode": "video_embeddings = embed_model.encode(videos['title'] + ' : ' + videos['description'])\n# Initialize Milvus vector search\nclient = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    logging.info(\"Creating Milvus collection: 'video_embeddings'\")\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )",
-        "detail": "main4",
+        "detail": "main",
         "documentation": {}
     },
     {
         "label": "client",
         "kind": 5,
-        "importPath": "main4",
-        "description": "main4",
+        "importPath": "main",
+        "description": "main",
         "peekOfCode": "client = MilvusClient(\"milvus_demo.db\")\ncollection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    logging.info(\"Creating Milvus collection: 'video_embeddings'\")\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )\n    data = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\n    res = client.upsert(collection_name=collection_name, data=data)",
-        "detail": "main4",
+        "detail": "main",
         "documentation": {}
     },
     {
         "label": "collection_name",
         "kind": 5,
-        "importPath": "main4",
-        "description": "main4",
+        "importPath": "main",
+        "description": "main",
         "peekOfCode": "collection_name = 'video_embeddings'\nif not client.has_collection(collection_name=collection_name):\n    logging.info(\"Creating Milvus collection: 'video_embeddings'\")\n    client.create_collection(\n        collection_name=collection_name,\n        dimension=768,\n    )\n    data = [{\"id\": video['video_id'], \"vector\": video_embeddings[i], \"video_id\": video['video_id']} for i, video in enumerate(videos.to_dict('records'))]\n    res = client.upsert(collection_name=collection_name, data=data)\n    logging.info(f\"Inserted {len(res)} entities into the collection.\")",
-        "detail": "main4",
+        "detail": "main",
         "documentation": {}
     },
     {
         "label": "user_id",
         "kind": 5,
-        "importPath": "main4",
-        "description": "main4",
+        "importPath": "main",
+        "description": "main",
         "peekOfCode": "user_id = 10\ntry:\n    recommendations = get_recommendations(user_id, top_n=10)\n    print(recommendations)\nexcept Exception as e:\n    logging.error(f\"Error in example usage: {e}\")",
-        "detail": "main4",
+        "detail": "main",
         "documentation": {}
     }
 ]
